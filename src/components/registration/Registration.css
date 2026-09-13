@@ -1,0 +1,168 @@
+.registration-section {
+  background-color: var(--color-ink-light);
+  border: 1px solid rgba(243, 242, 239, 0.1);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.registration-subtitle {
+  font-size: 1.8rem;
+  color: var(--color-bone);
+  margin-bottom: 0.5rem;
+}
+
+.registration-hint {
+  font-size: 0.9rem;
+  color: rgba(243, 242, 239, 0.7);
+  margin-bottom: var(--space-md);
+}
+
+.sport-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.sport-select-card {
+  background-color: rgba(243, 242, 239, 0.05);
+  border: 2px solid rgba(243, 242, 239, 0.1);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  color: var(--color-bone);
+}
+
+.sport-select-card:hover:not(:disabled) {
+  border-color: var(--color-bone);
+  transform: translateY(-2px);
+}
+
+.sport-select-card.selected {
+  background-color: var(--color-bone);
+  border-color: var(--color-bone);
+  color: var(--color-ink);
+}
+
+.sport-select-card.full {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: rgba(243, 242, 239, 0.02);
+}
+
+.sport-select-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sport-select-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.sport-select-card.selected .sport-select-name {
+  color: var(--color-ink);
+}
+
+.status-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.status-badge.open {
+  background-color: rgba(46, 102, 104, 0.4);
+  color: #38bdf8;
+}
+
+.status-badge.limited {
+  background-color: rgba(242, 95, 34, 0.4);
+  color: #fb923c;
+}
+
+.status-badge.full {
+  background-color: rgba(243, 242, 239, 0.2);
+  color: var(--color-bone);
+}
+
+.sport-select-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  color: rgba(243, 242, 239, 0.7);
+}
+
+.sport-select-card.selected .sport-select-meta {
+  color: rgba(15, 23, 42, 0.8);
+}
+
+.selected-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-accent);
+  color: var(--color-bone);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Form Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-bone);
+}
+
+.form-group input {
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(243, 242, 239, 0.2);
+  border-radius: var(--border-radius-sm);
+  background-color: rgba(243, 242, 239, 0.05);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-bone);
+  transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}

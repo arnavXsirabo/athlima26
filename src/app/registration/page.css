@@ -1,0 +1,52 @@
+.page-wrapper {
+  padding-top: 120px;
+  padding-bottom: var(--space-xl);
+  min-height: 100vh;
+}
+
+.registration-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.registration-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.registration-header h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  color: var(--color-bone);
+  margin-bottom: 0.5rem;
+}
+
+.registration-header p {
+  color: rgba(243, 242, 239, 0.7);
+  font-size: 1.1rem;
+}
+
+.registration-submit-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(243, 242, 239, 0.1);
+}
+
+.registration-success {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.registration-success h2 {
+  font-size: 3rem;
+  color: var(--color-accent);
+}
+
+.registration-success p {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-md);
+}
