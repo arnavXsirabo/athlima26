@@ -14,19 +14,17 @@ export function RegistrationProvider({ children }) {
     contactPhone: '',
   });
 
-  const toggleSportSelection = (sportId) => {
-    const sportInfo = ATHLIMA_SPORTS.find(s => s.id === sportId);
-    
-    // Simulate fetching current registration count - using a mock static 0 for now
-    // In reality, this would check against the backend
-    const currentRegCount = 0; 
-    
-    if (getSportRegistrationStatus(currentRegCount, sportInfo.capacity) === 'FULL') {
-      return; // Cannot select full sport
-    }
+  const [sportPlayers, setSportPlayers] = useState({});
 
+  const toggleSportSelection = (sportId) => {
     setSelectedSports((prev) => {
       if (prev.includes(sportId)) {
+        // Remove sport and its player data
+        setSportPlayers(players => {
+          const newPlayers = { ...players };
+          delete newPlayers[sportId];
+          return newPlayers;
+        });
         return prev.filter(id => id !== sportId);
       } else {
         return [...prev, sportId];
@@ -41,12 +39,26 @@ export function RegistrationProvider({ children }) {
     }));
   };
 
+  const updateSportPlayer = (sportId, index, name) => {
+    setSportPlayers(prev => {
+      const currentSportPlayers = prev[sportId] || [];
+      const newSportPlayers = [...currentSportPlayers];
+      newSportPlayers[index] = name;
+      return {
+        ...prev,
+        [sportId]: newSportPlayers
+      };
+    });
+  };
+
   return (
     <RegistrationContext.Provider value={{
       selectedSports,
       toggleSportSelection,
       participantData,
-      updateParticipantData
+      updateParticipantData,
+      sportPlayers,
+      updateSportPlayer
     }}>
       {children}
     </RegistrationContext.Provider>

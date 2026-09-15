@@ -31,7 +31,7 @@ export const EVENT_DATA = {
       id: "football", 
       name: "FOOTBALL", 
       description: "The beautiful game under the stadium lights.", 
-      image: "https://images.unsplash.com/photo-1518605368461-1ee125232fb5?q=80&w=2074&auto=format&fit=crop" 
+      image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=2074&auto=format&fit=crop" 
     },
 
     { 
@@ -50,7 +50,7 @@ export const EVENT_DATA = {
       id: "badminton", 
       name: "BADMINTON", 
       description: "Lightning fast reflexes and precision.", 
-      image: "https://images.unsplash.com/photo-1626224583760-4bfcba25f822?q=80&w=2070&auto=format&fit=crop" 
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Olympics_2012_Mixed_Doubles_Final.jpg/1280px-Olympics_2012_Mixed_Doubles_Final.jpg" 
     },
     { 
       id: "chess", 

@@ -81,36 +81,30 @@ export default function HeroLayer() {
       <div className="absolute inset-0 z-10 flex flex-col justify-end pb-12 pt-32 px-6 md:px-12">
         <div className="container mx-auto h-full flex flex-col justify-between">
           
-          {/* Top Metadata */}
-          <div className="flex justify-between items-start pt-4 md:pt-12">
-            <div className="hero-metadata flex flex-col text-bone/80 text-xs font-semibold tracking-widest uppercase">
-              <span>{EVENT_DATA.organization}</span>
-              <span>INTER-COLLEGE SPORTS FESTIVAL</span>
-            </div>
-          </div>
+          {/* Top Metadata removed per user request */}
 
           {/* Main Typography & Countdown */}
-          <div ref={titleRef} className="flex flex-col relative w-full">
-            {/* The text is masked to allow animation from bottom */}
-            <div className="overflow-hidden">
-              <h1 className="hero-text text-fluid-hero font-display text-bone m-0 p-0 relative mix-blend-difference">
-                {EVENT_DATA.name}
-              </h1>
-            </div>
-            
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mt-2 md:-mt-4">
-              <div className="overflow-hidden">
-                <h1 className="hero-text text-fluid-hero font-display text-bone m-0 p-0 relative mix-blend-difference">
-                  {EVENT_DATA.year}
-                </h1>
-              </div>
-              
-              <div className="hero-metadata mb-4 lg:mb-12">
-                <Countdown />
-              </div>
+          <div ref={titleRef} className="flex flex-col w-full mb-16 md:mb-24 lg:mb-32">
+            {/* The logo is masked to allow animation from bottom */}
+            <div className="overflow-hidden flex justify-end w-full">
+              <Image 
+                src="/LOGO/athlima 26 logo.png" 
+                alt="Athlima 2026 Logo" 
+                width={1200} 
+                height={900} 
+                className="hero-text w-full max-w-5xl max-h-[55vh] md:max-h-[65vh] lg:max-h-[75vh] object-contain object-right-bottom mix-blend-screen opacity-90 drop-shadow-2xl origin-bottom-right"
+                priority 
+              />
             </div>
           </div>
           
+        </div>
+        
+        {/* Absolutely positioned Timer, decoupled from flex layout */}
+        <div className="absolute bottom-16 left-6 md:bottom-24 md:left-12 lg:bottom-32 z-20">
+          <div className="hero-metadata">
+            <Countdown />
+          </div>
         </div>
       </div>
 

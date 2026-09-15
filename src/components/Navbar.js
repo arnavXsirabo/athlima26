@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { EVENT_DATA } from "@/data/event";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
@@ -83,9 +84,14 @@ export default function Navbar() {
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Link href="/" className="group flex items-center">
-              <span className="font-display text-3xl md:text-4xl tracking-wide uppercase leading-none group-hover:text-cobalt transition-colors duration-300">
-                {EVENT_DATA.name} <span className="text-accent">26</span>
-              </span>
+              <Image 
+                src="/LOGO/wordmark_transparent.png" 
+                alt="Athlima 2026 Wordmark" 
+                width={200} 
+                height={50} 
+                className="h-12 w-auto object-contain -ml-4 md:-ml-8 transition-transform duration-300 group-hover:scale-105"
+                priority 
+              />
             </Link>
           </div>
 

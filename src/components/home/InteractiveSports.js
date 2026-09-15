@@ -116,7 +116,7 @@ export default function InteractiveSports() {
                 src={activeSport.image}
                 alt={activeSport.name}
                 fill
-                className="active-image object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
+                className="active-image object-cover object-center transition-transform duration-700 hover:scale-110"
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 priority
               />
