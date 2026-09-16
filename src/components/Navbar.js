@@ -7,7 +7,6 @@ import { EVENT_DATA } from "@/data/event";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,6 +14,8 @@ export default function Navbar() {
   const navRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const menuInnerRef = useRef(null);
+
+  const tl = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +26,6 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    
     // Keyboard accessibility
     const handleKeyDown = (e) => {
       if (e.key === "Escape" && isMobileMenuOpen) {
@@ -42,23 +37,40 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   useGSAP(() => {
-    if (isMobileMenuOpen) {
-      gsap.to(mobileMenuRef.current, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 0.8,
+    gsap.set(mobileMenuRef.current, {
+      yPercent: -100,
+      autoAlpha: 0,
+      pointerEvents: "none",
+    });
+
+    tl.current = gsap.timeline({ paused: true })
+      .to(mobileMenuRef.current, {
+        yPercent: 0,
+        autoAlpha: 1,
+        pointerEvents: "auto",
+        duration: 0.7,
         ease: "power4.inOut",
-      });
-      gsap.fromTo(
+      })
+      .fromTo(
         ".mobile-nav-link",
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: "power3.out", delay: 0.3 }
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power3.out" },
+        "-=0.3"
       );
-    } else {
-      gsap.to(mobileMenuRef.current, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        duration: 0.6,
-        ease: "power3.inOut",
-      });
+
+    // Initial state check in case React state is true on mount (e.g. back navigation)
+    if (isMobileMenuOpen) {
+      tl.current.progress(1);
+    }
+  }, { scope: navRef }); // Scoped to navRef
+
+  useEffect(() => {
+    if (tl.current) {
+      if (isMobileMenuOpen) {
+        tl.current.play();
+      } else {
+        tl.current.reverse();
+      }
     }
   }, [isMobileMenuOpen]);
 
@@ -114,27 +126,33 @@ export default function Navbar() {
           </nav>
 
           <button
-            className="md:hidden flex items-center text-ink z-50 relative"
+            className="md:hidden relative flex items-center justify-center min-w-[48px] min-h-[48px] text-ink z-[9999] pointer-events-auto cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <div className="relative w-6 h-5 pointer-events-none">
+              <span className={cn("absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ease-out", isMobileMenuOpen ? "top-2 rotate-45" : "top-0")} />
+              <span className={cn("absolute left-0 top-2 w-full h-0.5 bg-current transition-all duration-300 ease-out", isMobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100")} />
+              <span className={cn("absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ease-out", isMobileMenuOpen ? "top-2 -rotate-45" : "top-4")} />
+            </div>
           </button>
         </div>
       </header>
 
       {/* MOBILE FULLSCREEN MENU */}
       <div
+        id="mobile-menu"
         ref={mobileMenuRef}
-        className="fixed inset-0 z-40 bg-bone flex flex-col justify-center px-8"
-        style={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" }}
+        className="fixed inset-0 z-40 bg-bone flex flex-col justify-center px-8 overscroll-none invisible opacity-0 pointer-events-none"
       >
         <div ref={menuInnerRef} className="flex flex-col gap-6 w-full">
           {navLinks.map((link, i) => (
             <Link
               key={i}
               href={link.href}
-              className="mobile-nav-link font-display text-6xl tracking-wide uppercase text-ink hover:text-cobalt transition-colors"
+              className="mobile-nav-link font-display text-4xl sm:text-5xl md:text-6xl tracking-wide uppercase text-ink hover:text-cobalt transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
@@ -143,7 +161,7 @@ export default function Navbar() {
           <div className="mobile-nav-link h-px w-full bg-ink/10 my-4" />
           <Link
             href={EVENT_DATA.registrationUrl}
-            className="mobile-nav-link flex items-center gap-4 font-display text-5xl tracking-wide uppercase text-accent hover:text-cobalt transition-colors"
+            className="mobile-nav-link flex items-center gap-4 font-display text-3xl sm:text-4xl md:text-5xl tracking-wide uppercase text-accent hover:text-cobalt transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             REGISTER NOW <span>→</span>

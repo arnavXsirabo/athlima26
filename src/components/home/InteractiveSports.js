@@ -15,41 +15,46 @@ export default function InteractiveSports() {
   const containerRef = useRef(null);
   const imageContainerRef = useRef(null);
 
-  useGSAP(() => {
+  const { contextSafe } = useGSAP(() => {
     // Reveal section on scroll
     gsap.fromTo(
       ".sports-header",
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-      }}
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+        }
+      }
     );
   }, { scope: containerRef });
 
   // Handle sport change with animation
-  const handleSportChange = (sport) => {
+  const handleSportChange = contextSafe((sport) => {
     if (sport.id === activeSport.id) return;
     
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      tl.to(".active-image", {
-        opacity: 0,
-        scale: 1.05,
-        duration: 0.4,
-        ease: "power2.inOut",
-        onComplete: () => {
-          setActiveSport(sport);
-        }
-      }).fromTo(
-        ".active-image",
-        { opacity: 0, scale: 0.95 },
-        { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }
-      );
-    }, imageContainerRef);
-
-    return () => ctx.revert();
-  };
+    // Animate out
+    gsap.to(".active-image", {
+      opacity: 0,
+      scale: 1.05,
+      duration: 0.25,
+      ease: "power2.inOut",
+      onComplete: () => {
+        setActiveSport(sport);
+        // Animate in (using setTimeout to ensure React has rendered the new image src)
+        setTimeout(() => {
+          gsap.fromTo(
+            ".active-image",
+            { opacity: 0, scale: 0.95 },
+            { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }
+          );
+        }, 10);
+      }
+    });
+  });
 
   return (
     <section ref={containerRef} className="relative w-full py-24 md:py-32 bg-ink text-bone" id="sports">
@@ -60,10 +65,10 @@ export default function InteractiveSports() {
           <h2 className="text-fluid-h2 font-display m-0 leading-none">THE ARENA</h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Interactive List */}
-          <div className="lg:col-span-5 flex flex-col">
+          {/* Sports List */}
+          <div className="lg:col-span-5 flex flex-col justify-center relative z-20">
             <div className="flex flex-col border-t border-bone/10">
               {EVENT_DATA.sports.map((sport, index) => {
                 const isActive = activeSport.id === sport.id;
@@ -71,15 +76,16 @@ export default function InteractiveSports() {
                   <button
                     key={sport.id}
                     onClick={() => handleSportChange(sport)}
-                    className="group relative flex items-center justify-between py-6 md:py-8 border-b border-bone/10 text-left transition-colors duration-300 overflow-hidden"
+                    className="group relative flex items-center justify-between py-5 md:py-8 border-b border-bone/10 text-left transition-colors duration-300 overflow-hidden min-h-[64px] touch-manipulation w-full"
                   >
                     {/* Hover Background Fill */}
                     <div className={cn(
-                      "absolute inset-0 bg-bone/5 origin-left transition-transform duration-500 ease-out",
+                      "absolute inset-0 bg-bone/5 origin-left transition-transform duration-500 ease-out pointer-events-none",
                       isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                     )} />
                     
-                    <div className="relative z-10 flex items-center gap-6">
+                    {/* Content */}
+                    <div className="relative z-10 flex items-center gap-6 pointer-events-none">
                       <span className={cn(
                         "text-sm font-display tracking-widest transition-colors duration-300",
                         isActive ? "text-accent" : "text-bone/60 group-hover:text-bone"
@@ -107,7 +113,7 @@ export default function InteractiveSports() {
           </div>
 
           {/* Dynamic Image Display */}
-          <div className="lg:col-span-7 h-[50vh] min-h-[400px] lg:h-[70vh] relative">
+          <div className="lg:col-span-7 h-[40vh] min-h-[280px] sm:min-h-[350px] lg:h-[70vh] lg:min-h-[400px] relative">
             <div 
               ref={imageContainerRef}
               className="w-full h-full relative overflow-hidden bg-ink-light"

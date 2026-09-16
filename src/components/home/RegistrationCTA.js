@@ -60,7 +60,7 @@ export default function RegistrationCTA() {
         
         <Link 
           href={EVENT_DATA.registrationUrl}
-          className="cta-btn group relative inline-flex items-center justify-center px-12 py-5 bg-ink text-bone font-display tracking-widest uppercase text-2xl md:text-3xl overflow-hidden hover:text-accent transition-colors duration-500"
+          className="cta-btn group relative inline-flex items-center justify-center px-6 py-4 md:px-12 md:py-5 bg-ink text-bone font-display tracking-widest uppercase text-xl sm:text-2xl md:text-3xl overflow-hidden hover:text-accent transition-colors duration-500"
         >
           {/* Button Hover effect background */}
           <span className="absolute inset-0 w-full h-full bg-bone scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out"></span>

@@ -12,11 +12,12 @@ export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    // Check for reduced motion preference
+    // Check for reduced motion preference or mobile device
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     
-    if (prefersReducedMotion) {
-      return; // Do not initialize Lenis if user prefers reduced motion
+    if (prefersReducedMotion || isMobile) {
+      return; // Do not initialize Lenis on mobile or if user prefers reduced motion
     }
 
     const lenis = new Lenis({

@@ -1,0 +1,29 @@
+@reference "../globals.css";
+/* Simple additional styles for Admin UI if needed */
+.admin-card {
+  @apply bg-[#1c1a17] border border-[#f3f2ef]/10 rounded-xl p-6 shadow-lg;
+}
+.admin-metric {
+  @apply text-3xl font-display text-orange-400 mt-2;
+}
+.admin-table {
+  @apply w-full text-left text-sm text-[#f3f2ef]/80;
+}
+.admin-table th {
+  @apply bg-black/40 px-4 py-3 font-bold uppercase tracking-wider text-[#f3f2ef]/50 text-xs;
+}
+.admin-table td {
+  @apply px-4 py-3 border-t border-[#f3f2ef]/5;
+}
+.admin-badge {
+  @apply px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center;
+}
+.badge-pending {
+  @apply bg-yellow-500/20 text-yellow-500 border border-yellow-500/30;
+}
+.badge-verified, .badge-approved {
+  @apply bg-green-500/20 text-green-500 border border-green-500/30;
+}
+.badge-rejected {
+  @apply bg-red-500/20 text-red-500 border border-red-500/30;
+}

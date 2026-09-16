@@ -63,18 +63,26 @@ export default function Footer() {
 
   return (
     <footer className="relative w-full bg-ink">
-      {/* Invisible spacer to reserve height in normal document flow */}
-      <div className="invisible">
+      {/* MOBILE FOOTER - Standard inline flow */}
+      <div className="block md:hidden">
         <FooterContent />
       </div>
-      
-      {/* Absolute wrapper with clip-path for reveal effect */}
-      <div 
-        className="absolute inset-0 z-0" 
-        style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
-      >
-        <div className="fixed bottom-0 left-0 w-full h-[auto]">
+
+      {/* DESKTOP FOOTER - Cinematic reveal effect */}
+      <div className="hidden md:block">
+        {/* Invisible spacer to reserve height in normal document flow */}
+        <div className="invisible">
           <FooterContent />
+        </div>
+        
+        {/* Absolute wrapper with clip-path for reveal effect */}
+        <div 
+          className="absolute inset-0 z-0" 
+          style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)", transform: "translateZ(0)" }}
+        >
+          <div className="fixed bottom-0 left-0 w-full h-[auto]">
+            <FooterContent />
+          </div>
         </div>
       </div>
     </footer>

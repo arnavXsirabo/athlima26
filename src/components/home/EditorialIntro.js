@@ -13,41 +13,70 @@ export default function EditorialIntro() {
   const containerRef = useRef(null);
   
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-        end: "center center",
-        scrub: 1,
-      }
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+          end: "center center",
+          scrub: 1,
+        }
+      });
+
+      tl.fromTo(
+        ".intro-word",
+        { y: 100, opacity: 0, rotate: 5 },
+        { y: 0, opacity: 1, rotate: 0, stagger: 0.1, ease: "power3.out", duration: 1 }
+      ).fromTo(
+        ".intro-image-container",
+        { clipPath: "inset(100% 0% 0% 0%)", scale: 1.1 },
+        { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 1.5, ease: "power4.inOut" },
+        "-=0.8"
+      ).fromTo(
+        ".intro-desc",
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 1 },
+        "-=1"
+      );
+      
+      // Slight parallax on the image
+      gsap.to(".intro-parallax-img", {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
     });
 
-    tl.fromTo(
-      ".intro-word",
-      { y: 100, opacity: 0, rotate: 5 },
-      { y: 0, opacity: 1, rotate: 0, stagger: 0.1, ease: "power3.out", duration: 1 }
-    ).fromTo(
-      ".intro-image-container",
-      { clipPath: "inset(100% 0% 0% 0%)", scale: 1.1 },
-      { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 1.5, ease: "power4.inOut" },
-      "-=0.8"
-    ).fromTo(
-      ".intro-desc",
-      { opacity: 0, x: -20 },
-      { opacity: 1, x: 0, duration: 1 },
-      "-=1"
-    );
-    
-    // Slight parallax on the image
-    gsap.to(".intro-parallax-img", {
-      yPercent: 15,
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-      }
+    mm.add("(max-width: 767px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 85%",
+        }
+      });
+
+      tl.fromTo(
+        ".intro-word",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, ease: "power2.out", duration: 0.8 }
+      ).fromTo(
+        ".intro-image-container",
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 1, ease: "power3.out" },
+        "-=0.4"
+      ).fromTo(
+        ".intro-desc",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        "-=0.6"
+      );
     });
   }, { scope: containerRef });
 
@@ -55,7 +84,7 @@ export default function EditorialIntro() {
   const themeWords = EVENT_DATA.theme.split(" ");
 
   return (
-    <section ref={containerRef} className="relative w-full py-24 md:py-48 px-6 md:px-12 bg-bone text-ink overflow-hidden">
+    <section ref={containerRef} className="relative w-full py-16 md:py-32 lg:py-48 px-6 md:px-12 bg-bone text-ink overflow-hidden">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           

@@ -80,7 +80,7 @@ function RegistrationContent() {
             <h3 className="text-3xl font-display text-bone mb-4">Payment Summary</h3>
             <p className="text-bone/70 mb-8 max-w-2xl mx-auto">Please review your selected sports and total fee. Upon clicking Complete Registration, you will be redirected to our secure payment gateway to finalize your registration.</p>
             
-            <div className="inline-block text-left bg-black/40 p-6 rounded border border-bone/10 mb-8 min-w-[300px]">
+            <div className="inline-block text-left bg-black/40 p-6 rounded border border-bone/10 mb-8 w-full max-w-sm mx-auto">
               {selectedSports.map(id => {
                 const s = ATHLIMA_SPORTS.find(x => x.id === id);
                 return (

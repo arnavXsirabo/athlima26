@@ -61,6 +61,7 @@ export default function VisualStory() {
             <div 
               ref={(el) => (imagesRef.current[0] = el)} 
               className="absolute inset-0 origin-left"
+              style={{ transform: 'translateZ(0)' }}
             >
               <Image
                 src={EVENT_DATA.gallery[1]}
@@ -84,6 +85,7 @@ export default function VisualStory() {
               <div 
                 ref={(el) => (imagesRef.current[1] = el)} 
                 className="relative aspect-[3/4] w-full bg-ink/5 overflow-hidden"
+                style={{ transform: 'translateZ(0)' }}
               >
                 <Image
                   src={EVENT_DATA.gallery[2]}

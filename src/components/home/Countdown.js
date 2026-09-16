@@ -82,10 +82,10 @@ export default function Countdown({ className }) {
   ];
 
   return (
-    <div className={cn("flex gap-6 md:gap-12", className)}>
+    <div className={cn("flex gap-4 sm:gap-6 md:gap-12", className)}>
       {timeBlocks.map((block, idx) => (
         <div key={idx} className="flex flex-col overflow-hidden">
-          <span className="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider leading-none tabular-nums text-bone drop-shadow-sm">
+          <span className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-wider leading-none tabular-nums text-bone drop-shadow-sm">
             {block.value}
           </span>
           <span className="text-[10px] md:text-xs font-semibold tracking-widest text-bone/70 mt-1">

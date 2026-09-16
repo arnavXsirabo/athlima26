@@ -25,15 +25,13 @@
     --selection-text: var(--color-bone);
   }
 
-  html {
-    @apply antialiased scroll-smooth;
+  html, body {
+    @apply antialiased scroll-smooth font-sans;
     background-color: var(--color-bone);
     color: var(--color-ink);
     text-rendering: optimizeLegibility;
-  }
-
-  body {
-    @apply font-sans;
+    width: 100%;
+    max-width: 100vw;
     overflow-x: hidden;
   }
 
@@ -50,21 +48,21 @@
 
 @layer utilities {
   .text-fluid-hero {
-    font-size: clamp(4rem, 15vw, 16rem);
+    font-size: clamp(3rem, 12vw, 16rem);
     line-height: 0.85;
     letter-spacing: -0.02em;
     text-transform: uppercase;
   }
 
   .text-fluid-h1 {
-    font-size: clamp(3rem, 10vw, 8rem);
+    font-size: clamp(2.5rem, 8vw, 8rem);
     line-height: 0.9;
     letter-spacing: -0.01em;
     text-transform: uppercase;
   }
 
   .text-fluid-h2 {
-    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-size: clamp(2rem, 6vw, 6rem);
     line-height: 0.95;
     text-transform: uppercase;
   }
@@ -96,5 +94,17 @@
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .safe-pt {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  
+  .safe-pb {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
