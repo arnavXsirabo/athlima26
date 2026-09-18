@@ -59,6 +59,11 @@ function LoginContent() {
         {unauthorizedError && (
           <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-sm text-center font-bold">
             Access Denied: You do not have the required administrative permissions.
+            {searchParams.get('details') && (
+              <div className="mt-2 text-xs opacity-80 font-mono">
+                Reason: {searchParams.get('details')}
+              </div>
+            )}
           </div>
         )}
 

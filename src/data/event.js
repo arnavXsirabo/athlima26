@@ -69,6 +69,12 @@ export const EVENT_DATA = {
       name: "SWIMMING",
       description: "Power and endurance in the water.",
       image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=2000&auto=format&fit=crop"
+    },
+    {
+      id: "shotput",
+      name: "SHOTPUT",
+      description: "Raw power, technique, and explosive strength.",
+      image: "/shotput.png"
     }
   ],
   gallery: [

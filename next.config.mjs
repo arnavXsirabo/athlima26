@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  allowedDevOrigins: ['172.20.10.6'],
+  allowedDevOrigins: ['172.20.10.6', '172.20.10.2'],
   images: {
     remotePatterns: [
       {
@@ -12,6 +12,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'thumb.wikimedia.org',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
         port: '',
         pathname: '/**',
       }

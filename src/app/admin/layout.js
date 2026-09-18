@@ -25,6 +25,15 @@ export default async function AdminLayout({ children }) {
   
   const initials = profile?.name ? profile.name.substring(0, 2).toUpperCase() : 'AU';
   const roleDisplay = profile?.role ? profile.role.replace('_', ' ') : 'Admin';
+
+  if (!user) {
+    return (
+      <div className="flex min-h-screen bg-[#111] text-bone font-sans overflow-hidden">
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen bg-[#111] text-bone font-sans overflow-hidden">
       {/* Sidebar */}
