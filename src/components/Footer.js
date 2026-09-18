@@ -29,7 +29,15 @@ export default function Footer() {
           <div className="md:col-span-3 flex flex-col gap-4">
             <h4 className="text-xs font-bold tracking-widest text-bone/60 uppercase mb-4">Contact</h4>
             <a href={`mailto:${EVENT_DATA.contact.email}`} className="text-sm font-medium hover:text-accent transition-colors">{EVENT_DATA.contact.email}</a>
-            <a href={`tel:${EVENT_DATA.contact.phone.replace(/\s+/g, '')}`} className="text-sm font-medium hover:text-accent transition-colors">{EVENT_DATA.contact.phone}</a>
+            
+            <div className="flex flex-col gap-2 mt-2">
+              <a href="tel:+919395227035" className="text-sm font-medium hover:text-accent transition-colors">
+                Anmol Gohain Baruah: <br className="md:hidden" />+91 93952 27035
+              </a>
+              <a href="tel:+917002382495" className="text-sm font-medium hover:text-accent transition-colors">
+                Kasturi Indrani Konwar: <br className="md:hidden" />+91 70023 82495
+              </a>
+            </div>
             <div className="mt-4 flex gap-6">
               {Object.entries(EVENT_DATA.socialLinks).map(([platform, url]) => (
                 <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium uppercase hover:text-accent transition-colors">

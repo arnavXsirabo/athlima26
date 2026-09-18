@@ -78,7 +78,7 @@ export default function Navbar() {
     { name: "ABOUT", href: "/about" },
     { name: "RULES", href: "/rules" },
     { name: "SCHEDULE", href: "/schedule" },
-    { name: "CONTACT", href: "/contact" },
+    { name: "FOR QUERY", href: "/for-query" },
   ];
 
   return (
