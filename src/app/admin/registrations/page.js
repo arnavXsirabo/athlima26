@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import RegistrationsClient from './RegistrationsClient';
 
 export default async function AdminRegistrationsPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Fetch all registrations with their selected sports and players
   const { data: registrations, error } = await supabase

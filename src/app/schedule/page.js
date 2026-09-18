@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default async function SchedulePage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   
   // Fetch matches ordered by start_time
   const { data: matches, error } = await supabase

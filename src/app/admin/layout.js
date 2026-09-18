@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Home, Users, Trophy, Calendar, Settings, LogOut } from 'lucide-react';
+import { Home, Users, Trophy, Calendar, Settings } from 'lucide-react';
+import { createClient } from '@/utils/supabase/server';
+import LogoutButton from '@/components/admin/LogoutButton';
 import './Admin.css';
 
 export const metadata = {
@@ -7,11 +9,22 @@ export const metadata = {
   description: 'Athlima 2026 Admin Dashboard',
 };
 
-export default function AdminLayout({ children }) {
-  // TODO: SECURITY NOTE - DEVELOPMENT ONLY
-  // Production deployment of /admin MUST NOT happen until authentication 
-  // and authorization (role-based RLS via profiles) are fully enabled.
+export default async function AdminLayout({ children }) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
   
+  let profile = null;
+  if (user) {
+    const { data } = await supabase
+      .from('profiles')
+      .select('name, role')
+      .eq('id', user.id)
+      .single();
+    profile = data;
+  }
+  
+  const initials = profile?.name ? profile.name.substring(0, 2).toUpperCase() : 'AU';
+  const roleDisplay = profile?.role ? profile.role.replace('_', ' ') : 'Admin';
   return (
     <div className="flex h-screen bg-[#111] text-bone font-sans overflow-hidden">
       {/* Sidebar */}
@@ -50,10 +63,7 @@ export default function AdminLayout({ children }) {
         </nav>
         
         <div className="p-4 border-t border-bone/10">
-          <button className="flex items-center gap-3 px-4 py-3 w-full rounded-lg hover:bg-red-500/10 text-bone/60 hover:text-red-400 transition-colors text-left">
-            <LogOut size={18} />
-            <span className="font-bold text-sm">Sign Out</span>
-          </button>
+          <LogoutButton />
         </div>
       </aside>
 
@@ -63,18 +73,15 @@ export default function AdminLayout({ children }) {
         <header className="h-16 bg-[#1c1a17]/50 backdrop-blur border-b border-bone/10 flex items-center justify-between px-6 shrink-0">
           <div className="md:hidden font-display text-xl text-orange-400">ATHLIMA ADMIN</div>
           <div className="flex-1 md:flex hidden justify-center">
-            <div className="bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-1 rounded text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-              Development Mode (No Auth)
-            </div>
+            {/* Removed Development Mode Badge */}
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right hidden sm:block">
-              <div className="text-sm font-bold text-bone">Admin User</div>
-              <div className="text-xs text-bone/50">Development</div>
+              <div className="text-sm font-bold text-bone">{profile?.name || 'Admin User'}</div>
+              <div className="text-xs text-bone/50 capitalize">{roleDisplay}</div>
             </div>
-            <div className="w-10 h-10 rounded bg-orange-900/50 border border-orange-500/30 flex items-center justify-center text-orange-400 font-bold">
-              AU
+            <div className="w-10 h-10 rounded bg-orange-900/50 border border-orange-500/30 flex items-center justify-center text-orange-400 font-bold uppercase">
+              {initials}
             </div>
           </div>
         </header>

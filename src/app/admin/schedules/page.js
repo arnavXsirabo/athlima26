@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import SchedulesClient from './SchedulesClient';
 
 export default async function SchedulesPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   
   // Fetch all sports for the dropdown
   const { data: sports, error: sportsError } = await supabase

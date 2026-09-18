@@ -109,13 +109,13 @@ export default function HeroLayer() {
           
           <div ref={titleRef} className="flex flex-col w-full z-10 flex-grow justify-end">
             {/* The logo is masked to allow animation from bottom */}
-            <div className="overflow-hidden flex justify-end w-full mb-8 md:mb-16 lg:mb-24">
+            <div className="overflow-hidden flex justify-end w-full mb-8 md:mb-8 lg:mb-10">
               <Image 
                 src="/LOGO/athlima 26 logo.png" 
                 alt="Athlima 2026 Logo" 
                 width={1200} 
                 height={900} 
-                className="hero-text w-full max-w-5xl max-h-[45vh] md:max-h-[65vh] lg:max-h-[75vh] object-contain object-right-bottom mix-blend-screen opacity-90 drop-shadow-2xl origin-bottom-right"
+                className="hero-text w-full max-w-5xl max-h-[45vh] md:max-h-[60vh] lg:max-h-[70vh] object-contain object-right-bottom mix-blend-screen opacity-90 drop-shadow-2xl origin-bottom-right"
                 priority 
               />
             </div>

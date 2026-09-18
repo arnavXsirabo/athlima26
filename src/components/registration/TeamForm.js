@@ -1,9 +1,8 @@
 'use client';
 import { useRegistration } from '@/context/RegistrationContext';
-import { ATHLIMA_SPORTS } from '@/data/sports';
 
 export default function TeamForm({ step }) {
-  const { participantData, updateParticipantData, selectedSports, sportPlayers, updateSportPlayer } = useRegistration();
+  const { participantData, updateParticipantData, selectedSports, sportPlayers, updateSportPlayer, sports } = useRegistration();
 
   if (selectedSports.length === 0) return null;
   if (step > 2) return null;
@@ -71,7 +70,7 @@ export default function TeamForm({ step }) {
         <div className="space-y-6">
           <h3 className="text-2xl font-display text-bone mb-6">3. PLAYER DETAILS</h3>
         {selectedSports.map(sportId => {
-          const sport = ATHLIMA_SPORTS.find(s => s.id === sportId);
+          const sport = sports.find(s => s.id === sportId);
           if (!sport) return null;
 
           return (

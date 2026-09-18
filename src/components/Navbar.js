@@ -89,20 +89,20 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-fluid",
           isScrolled
-            ? "py-4 bg-bone/95 backdrop-blur-md border-b border-ink/10 shadow-sm"
-            : "py-6 bg-bone/50 backdrop-blur-sm border-b border-ink/5"
+            ? "py-2 bg-bone/75 backdrop-blur-md border-b border-ink/10 shadow-sm"
+            : "py-3 bg-bone/30 backdrop-blur-sm border-b border-ink/5"
         )}
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Link href="/" className="group flex items-center">
-              <Image 
-                src="/LOGO/wordmark_transparent.png" 
-                alt="Athlima 2026 Wordmark" 
-                width={200} 
-                height={50} 
-                className="h-12 w-auto object-contain -ml-4 md:-ml-8 transition-transform duration-300 group-hover:scale-105"
-                priority 
+              <Image
+                src="/LOGO/wordmark_transparent_v2.png"
+                alt="Athlima 2026 Wordmark"
+                width={240}
+                height={60}
+                className="h-16 w-auto object-contain -ml-4 md:-ml-8 transition-transform duration-300 group-hover:scale-105"
+                priority
               />
             </Link>
           </div>
@@ -167,7 +167,7 @@ export default function Navbar() {
             REGISTER NOW <span>→</span>
           </Link>
         </div>
-        
+
         <div className="absolute bottom-8 left-8 right-8 flex justify-between text-xs font-medium tracking-widest text-ink/50 uppercase">
           <span>{EVENT_DATA.shortOrg}</span>
           <span>EST. {EVENT_DATA.year}</span>

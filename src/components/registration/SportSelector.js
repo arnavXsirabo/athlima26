@@ -1,11 +1,37 @@
 'use client';
 import { useRegistration } from '@/context/RegistrationContext';
-import { ATHLIMA_SPORTS, getSportRegistrationStatus } from '@/data/sports';
 import { cn } from '@/lib/utils';
 import './Registration.css';
 
 export default function SportSelector() {
-  const { selectedSports, toggleSportSelection } = useRegistration();
+  const { selectedSports, toggleSportSelection, sports, isLoadingSports, sportsError } = useRegistration();
+
+  if (isLoadingSports) {
+    return (
+      <div className="registration-section !bg-transparent !border-0 !p-0 !shadow-none mb-12">
+        <div className="mb-8">
+          <h3 className="text-2xl font-display text-bone mb-2">1. SELECT YOUR SPORTS</h3>
+          <p className="text-bone/60 text-sm">You can select multiple sports. We will collect player details for each selected sport.</p>
+        </div>
+        <div className="text-center py-20 text-orange-400 font-bold tracking-widest uppercase">
+          <span className="animate-pulse">Loading sports...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (sportsError) {
+    return (
+      <div className="registration-section !bg-transparent !border-0 !p-0 !shadow-none mb-12">
+        <div className="mb-8">
+          <h3 className="text-2xl font-display text-bone mb-2">1. SELECT YOUR SPORTS</h3>
+        </div>
+        <div className="text-center py-20 text-red-500 font-bold tracking-widest uppercase bg-[#1c1a17]/80 rounded-lg border border-red-900/30 p-8">
+          {sportsError}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="registration-section !bg-transparent !border-0 !p-0 !shadow-none mb-12">
@@ -15,7 +41,7 @@ export default function SportSelector() {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {ATHLIMA_SPORTS.map(sport => {
+        {sports.map(sport => {
           const isSelected = selectedSports.includes(sport.id);
 
           return (

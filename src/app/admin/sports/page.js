@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import SportsClient from './SportsClient';
 
 export default async function AdminSportsPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: sports, error } = await supabase
     .from('sports')
