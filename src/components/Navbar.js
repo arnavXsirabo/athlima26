@@ -43,6 +43,8 @@ export default function Navbar() {
       pointerEvents: "none",
     });
 
+    const mobileLinks = gsap.utils.toArray(".mobile-nav-link", mobileMenuRef.current);
+
     tl.current = gsap.timeline({ paused: true })
       .to(mobileMenuRef.current, {
         yPercent: 0,
@@ -52,7 +54,7 @@ export default function Navbar() {
         ease: "power4.inOut",
       })
       .fromTo(
-        ".mobile-nav-link",
+        mobileLinks,
         { y: 40, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power3.out" },
         "-=0.3"
@@ -62,7 +64,7 @@ export default function Navbar() {
     if (isMobileMenuOpen) {
       tl.current.progress(1);
     }
-  }, { scope: navRef }); // Scoped to navRef
+  });
 
   useEffect(() => {
     if (tl.current) {

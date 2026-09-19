@@ -124,7 +124,6 @@ export default function InteractiveSports() {
                 fill
                 className="active-image object-cover object-center transition-transform duration-700 hover:scale-110"
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                priority
               />
               <div className="absolute inset-0 bg-ink/20 mix-blend-multiply transition-opacity duration-300 hover:opacity-0" />
               

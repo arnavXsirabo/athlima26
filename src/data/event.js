@@ -7,7 +7,7 @@ export const EVENT_DATA = {
   startDate: "2026-10-01T00:00:00+05:30", // Oct 1, 2026, 12:00 AM IST
   registrationUrl: "/registration",
   socialLinks: {
-    instagram: "https://instagram.com/athlima",
+    instagram: "https://instagram.com/smit_athlima",
     twitter: "https://twitter.com/athlima",
   },
   contact: {
