@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { EVENT_DATA } from "@/data/event";
-import { Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
   const FooterContent = () => (
@@ -41,10 +40,20 @@ export default function Footer() {
             </div>
             <div className="mt-4 flex gap-6">
               {Object.entries(EVENT_DATA.socialLinks).map(([platform, url]) => {
-                const Icon = platform.toLowerCase() === "instagram" ? Instagram : (platform.toLowerCase() === "twitter" ? Twitter : null);
+                let Icon = null;
+                if (platform.toLowerCase() === "instagram") {
+                  Icon = () => (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform duration-300"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  );
+                } else if (platform.toLowerCase() === "twitter") {
+                  Icon = () => (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform duration-300"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                  );
+                }
+                
                 return (
                   <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium uppercase hover:text-accent transition-colors group">
-                    {Icon && <Icon size={20} className="group-hover:scale-110 transition-transform duration-300" />}
+                    {Icon && <Icon />}
                     <span>{platform}</span>
                   </a>
                 );
