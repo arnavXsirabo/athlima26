@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { EVENT_DATA } from "@/data/event";
+import { Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
   const FooterContent = () => (
@@ -39,11 +40,15 @@ export default function Footer() {
               </a>
             </div>
             <div className="mt-4 flex gap-6">
-              {Object.entries(EVENT_DATA.socialLinks).map(([platform, url]) => (
-                <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium uppercase hover:text-accent transition-colors">
-                  {platform}
-                </a>
-              ))}
+              {Object.entries(EVENT_DATA.socialLinks).map(([platform, url]) => {
+                const Icon = platform.toLowerCase() === "instagram" ? Instagram : (platform.toLowerCase() === "twitter" ? Twitter : null);
+                return (
+                  <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium uppercase hover:text-accent transition-colors group">
+                    {Icon && <Icon size={20} className="group-hover:scale-110 transition-transform duration-300" />}
+                    <span>{platform}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
