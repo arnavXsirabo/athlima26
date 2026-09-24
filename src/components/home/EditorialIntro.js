@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function EditorialIntro() {
   const containerRef = useRef(null);
-  
+
   useGSAP(() => {
     let mm = gsap.matchMedia();
 
@@ -40,7 +40,7 @@ export default function EditorialIntro() {
         { opacity: 1, x: 0, duration: 1 },
         "-=1"
       );
-      
+
       // Slight parallax on the image
       gsap.to(".intro-parallax-img", {
         yPercent: 15,
@@ -87,7 +87,7 @@ export default function EditorialIntro() {
     <section ref={containerRef} className="relative w-full py-16 md:py-32 lg:py-48 px-6 md:px-12 bg-bone text-ink overflow-hidden">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Left Column: Typography */}
           <div className="lg:col-span-6 flex flex-col z-10">
             <h2 className="font-display text-fluid-h1 leading-none uppercase m-0 p-0 flex flex-wrap gap-x-4 md:gap-x-8">
@@ -97,10 +97,10 @@ export default function EditorialIntro() {
                 </div>
               ))}
             </h2>
-            
+
             <div className="intro-desc mt-12 max-w-xl">
               <p className="text-xl md:text-2xl font-medium leading-relaxed text-ink/80 mb-6">
-                Athlima is the annual sports fest of SMIT and one of the most energetic and unifying events of the academic year. 
+                Athlima is the annual sports fest of Sikkim Manipal Institute of Technology and one of the most energetic and unifying events of the academic year.
               </p>
               <p className="text-lg font-medium leading-relaxed text-ink/60">
                 It celebrates team spirit, endurance, discipline, and passion for sports, bringing together athletes from various colleges to compete and excel in a wide range of sporting events.
@@ -113,7 +113,7 @@ export default function EditorialIntro() {
               </div>
             </div>
           </div>
-          
+
           {/* Right Column: Editorial Image */}
           <div className="lg:col-span-6 relative mt-12 lg:mt-0">
             <div className="intro-image-container relative aspect-[4/3] md:aspect-video lg:aspect-[16/10] overflow-hidden bg-ink/5">
@@ -128,7 +128,7 @@ export default function EditorialIntro() {
               <div className="absolute inset-0 bg-noise opacity-40 mix-blend-overlay"></div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>

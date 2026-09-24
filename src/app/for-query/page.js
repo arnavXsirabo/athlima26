@@ -14,7 +14,7 @@ export default function ForQueryPage() {
     { sport: 'Table Tennis', contacts: [{ name: 'Kushal Chettri', phone: '8597669030' }] },
     {
       sport: 'Cricket', contacts: [
-        { name: 'Suraj Kumar', phone: '8969699120' },
+        { name: 'Archishman Hazra', phone: '9883359443' },
         { name: 'Subodh Kafley', phone: '8101205142' }
       ]
     }
