@@ -36,13 +36,14 @@ export default function AboutPage() {
           </div>
           
           <div className="md:col-span-6">
-            <div className="relative aspect-[3/4] bg-ink/5 overflow-hidden">
-              <Image
-                src={EVENT_DATA.gallery[0]}
-                alt="Athlima Moments"
-                fill
-                className="object-cover scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
+            <div className="relative aspect-[4/3] md:aspect-video lg:aspect-[16/10] bg-ink/5 overflow-hidden">
+              <video
+                src="/sports/video.mp4"
+                className="object-cover w-full h-full scale-105 absolute inset-0"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
               <div className="absolute inset-0 bg-ink/10 mix-blend-overlay"></div>
             </div>

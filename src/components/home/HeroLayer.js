@@ -17,7 +17,7 @@ export default function HeroLayer() {
 
   useGSAP(() => {
     let mm = gsap.matchMedia();
-    
+
     mm.add("(min-width: 768px)", () => {
       const tl = gsap.timeline();
 
@@ -80,7 +80,7 @@ export default function HeroLayer() {
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
         "-=0.5"
       );
-      
+
       // Removed expensive layout/filter scrubs on mobile
     });
   }, { scope: containerRef });
@@ -106,26 +106,38 @@ export default function HeroLayer() {
       {/* Content Layer */}
       <div className="col-start-1 row-start-1 z-10 flex flex-col justify-end pb-10 pt-32 px-6 md:px-12 md:pb-12 safe-pb pointer-events-none">
         <div className="container mx-auto h-full flex flex-col justify-end relative">
-          
+
+          {/* SMIT Logo at the top left */}
+          <div className="absolute top-0 left-0 z-20 pointer-events-auto mt-2 -ml-6 md:mt-8 md:-ml-16 lg:-ml-24">
+            <Image
+              src="/sports/smit.png"
+              alt="SMIT Logo"
+              width={200}
+              height={200}
+              className="w-32 md:w-62 lg:w-72 object-contain drop-shadow-xl opacity-90"
+              priority
+            />
+          </div>
+
           <div ref={titleRef} className="flex flex-col w-full z-10 flex-grow justify-end">
             {/* The logo is masked to allow animation from bottom */}
             <div className="overflow-hidden flex justify-end w-full mb-8 md:mb-8 lg:mb-10">
-              <Image 
-                src="/LOGO/athlima 26 logo.png" 
-                alt="Athlima 2026 Logo" 
-                width={1200} 
-                height={900} 
+              <Image
+                src="/LOGO/athlima 26 logo.png"
+                alt="Athlima 2026 Logo"
+                width={1200}
+                height={900}
                 className="hero-text w-full max-w-5xl max-h-[45vh] md:max-h-[60vh] lg:max-h-[70vh] object-contain object-right-bottom mix-blend-screen opacity-90 drop-shadow-2xl origin-bottom-right"
-                priority 
+                priority
               />
             </div>
           </div>
-          
+
           {/* Timer: stacked naturally on mobile, absolute on desktop */}
           <div className="hero-metadata w-full relative z-20 md:absolute md:bottom-24 lg:bottom-32 md:left-0 flex justify-start pointer-events-auto">
             <Countdown />
           </div>
-          
+
         </div>
       </div>
 

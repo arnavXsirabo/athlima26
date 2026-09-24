@@ -89,7 +89,7 @@ export default function EditorialIntro() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Typography */}
-          <div className="lg:col-span-7 flex flex-col z-10">
+          <div className="lg:col-span-6 flex flex-col z-10">
             <h2 className="font-display text-fluid-h1 leading-none uppercase m-0 p-0 flex flex-wrap gap-x-4 md:gap-x-8">
               {themeWords.map((word, i) => (
                 <div key={i} className="overflow-hidden inline-block pb-4">
@@ -115,14 +115,15 @@ export default function EditorialIntro() {
           </div>
           
           {/* Right Column: Editorial Image */}
-          <div className="lg:col-span-5 relative mt-12 lg:mt-0">
-            <div className="intro-image-container relative aspect-[3/4] md:aspect-square lg:aspect-[4/5] overflow-hidden bg-ink/5">
-              <Image
-                src={EVENT_DATA.gallery[0]}
-                alt="Athlima Competition"
-                fill
-                className="intro-parallax-img object-cover scale-110"
-                sizes="(max-width: 1024px) 100vw, 40vw"
+          <div className="lg:col-span-6 relative mt-12 lg:mt-0">
+            <div className="intro-image-container relative aspect-[4/3] md:aspect-video lg:aspect-[16/10] overflow-hidden bg-ink/5">
+              <video
+                src="/sports/video.mp4"
+                className="intro-parallax-img object-cover w-full h-full scale-110 absolute inset-0"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
               <div className="absolute inset-0 bg-noise opacity-40 mix-blend-overlay"></div>
             </div>

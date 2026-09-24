@@ -7,7 +7,7 @@ export const EVENT_DATA = {
   startDate: "2026-10-01T00:00:00+05:30", // Oct 1, 2026, 12:00 AM IST
   registrationUrl: "/registration",
   socialLinks: {
-    instagram: "https://instagram.com/smit_athlima",
+    instagram: "https://instagram.com/athlima",
     twitter: "https://twitter.com/athlima",
   },
   contact: {
@@ -25,38 +25,38 @@ export const EVENT_DATA = {
       id: "cricket",
       name: "CRICKET",
       description: "A battle of bat and ball, patience and power.",
-      image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2000&auto=format&fit=crop"
+      image: "/sports/cricket.jpeg"
     },
     {
       id: "football",
       name: "FOOTBALL",
       description: "The beautiful game under the stadium lights.",
-      image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=2074&auto=format&fit=crop"
+      image: "/sports/football.jpeg"
     },
 
     {
       id: "basketball",
       name: "BASKETBALL",
       description: "High-flying action and intense court battles.",
-      image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop"
+      image: "/sports/basketball.jpg"
     },
     {
       id: "volleyball",
       name: "VOLLEYBALL",
       description: "Spikes, blocks, and relentless energy.",
-      image: "https://images.unsplash.com/photo-1592656094267-764a45160876?q=80&w=2070&auto=format&fit=crop"
+      image: "/sports/volleyball.JPG"
     },
     {
       id: "badminton",
       name: "BADMINTON",
       description: "Lightning fast reflexes and precision.",
-      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Olympics_2012_Mixed_Doubles_Final.jpg/1280px-Olympics_2012_Mixed_Doubles_Final.jpg"
+      image: "/sports/badminton.jpeg"
     },
     {
       id: "chess",
       name: "CHESS",
       description: "The ultimate game of strategy and intellect.",
-      image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=2000&auto=format&fit=crop"
+      image: "/sports/chess.jpeg"
     },
     {
       id: "table-tennis",
@@ -68,18 +68,18 @@ export const EVENT_DATA = {
       id: "swimming",
       name: "SWIMMING",
       description: "Power and endurance in the water.",
-      image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=2000&auto=format&fit=crop"
+      image: "/sports/swimming.jpeg"
     },
     {
       id: "shotput",
       name: "SHOTPUT",
-      description: "Raw power, technique, and explosive strength.",
-      image: "/shotput.png"
+      description: "Pure strength and technique.",
+      image: "/sports/shotput.png"
     }
   ],
   gallery: [
     "https://images.unsplash.com/photo-1574629810360-7efbb6b04560?q=80&w=2069&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
+    "/sports/push limits.jpeg",
+    "/sports/legacyofexc.jpeg"
   ]
 };
